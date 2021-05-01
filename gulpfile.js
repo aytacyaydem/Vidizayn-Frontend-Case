@@ -31,6 +31,11 @@ function styles() {
     .pipe(browserSync.stream());
 }
 
+function fonts(){
+    return gulp.src("src/fonts/**/*")
+    .pipe(gulp.dest("dist/fonts"))
+}
+
 function javascript(){
     return gulp.src("src/js/**/*.js")
     .pipe(concat("app.min.js"))
@@ -60,11 +65,12 @@ function watching(){
 }
 
 
-  var build = gulp.series(remove, gulp.parallel(html, styles, javascript, images, sync, watching));
+  var build = gulp.series(remove, gulp.parallel(html, styles, fonts,javascript, images, sync, watching));
 
 
 exports.styles = styles;
 exports.javascript = javascript;
+exports.fonts = fonts;
 exports.html = html;
 exports.watching = watching;
 exports.images = images;
